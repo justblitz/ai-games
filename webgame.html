@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Web Game</title>
+</head>
+<body>
+  <h1>Welcome to My Web Game!</h1>
+
+  <canvas id="game" width="500" height="500"></canvas>
+
+  <script>
+    // Get the canvas element from the page
+    const canvas = document.getElementById("game");
+
+    // Get the 2D drawing context for the canvas
+    const ctx = canvas.getContext("2d");
+
+    // Define a player object with x and y coordinates
+    const player = {
+      x: 100,
+      y: 100
+    };
+
+    // Define a function to draw the player
+    const drawPlayer = () => {
+      ctx.beginPath();
+      ctx.arc(player.x, player.y, 20, 0, 2 * Math.PI);
+      ctx.fillStyle = "green";
+      ctx.fill();
+    };
+
+    // Define a function to update the game state
+    const update = () => {
+      // Clear the canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update the player's position
+      player.x += 2;
+      player.y += 2;
+
+      // Draw the player
+      drawPlayer();
+
+      // Call the update function again on the next frame
+      requestAnimationFrame(update);
+    };
+
+    // Start the game loop
+    update();
+  </script>
+</body>
+</html>
